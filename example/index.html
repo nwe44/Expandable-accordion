@@ -1,0 +1,69 @@
+<!doctype html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Expandable Accordion</title>
+  <meta name="description" content="Expandable accordion">
+  <meta name="author" content="Nick Evans">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <div id="container">
+    <header>
+		<h1>Expandable Accordion Example</h1>
+    </header>
+    <div id="main">
+		 <!-- begin expandable accordion
+	If you want multiple sections open at once, don't use an accordion
+	see http://docs.jquery.com/UI/API/1.8/Accordion -->
+    		<div id="accordion-1" class="accordion-expandable clearfix">
+	    		<h3><a href="#" title="">Expandable pseudo Accordion</a></h3>
+				<div class="accordion-content">
+					<p>An accordion doesn't allow more than one content panel to be open at the same time, and it takes a lot of effort to do that. If you want multiple sections open at once, don't use an accordion see http://docs.jquery.com/UI/API/1.8/Accordion</p>
+					<blockquote>
+					Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo, sed imperdiet lectus est ornare odio. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin consectetuer velit in dui.
+					</blockquote>
+				</div>    		
+	    		<h3><a href="#" title="This section contains links">This section contains links</a></h3>
+				<div class="accordion-content">
+					<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo, sed imperdiet lectus est ornare odio. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin consectetuer velit in dui. Phasellus wisi purus, interdum vitae, rutrum accumsan, viverra in, velit. Sed enim risus, congue non, tristique in, commodo eu, metus. Aenean tortor mi, imperdiet id, gravida eu, posuere eu, felis.</p>
+					<ul class="link-list">
+						<li><a href="#" title="This is a link">This is a link</a></li>
+						<li><a href="#" title="This is another link">This is another link</a></li>
+						<li><a href="#" title="This is my link">This is my link</a></li>
+						<li><a href="#" title="This is a fourth link">This is a fourth link</a></li>
+					</ul>
+				</div>    		
+	    		<h3><a href="#" title="">Expandable pseudo Accordion header 3</a></h3>
+				<div class="accordion-content">
+					<p>Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo, sed imperdiet lectus est ornare odio. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin consectetuer velit in dui. Phasellus wisi purus, interdum vitae, rutrum accumsan, viverra in, velit. Sed enim risus, congue non, tristique in, commodo eu, metus. Aenean tortor mi, imperdiet id, gravida eu, posuere eu, felis.</p>
+					<blockquote>
+					Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo, sed imperdiet lectus est ornare odio. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin consectetuer velit in dui.
+					</blockquote>
+				</div>    		
+    		</div> 	
+
+<!-- end expandable accordion -->
+    </div>
+    
+    <footer>
+
+    </footer>
+  </div> <!-- end of #container -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+  <script src="../expandable.js"></script>  
+  <script type="text/javascript">
+  $(document).ready(function() { 
+  	$('.accordion-expandable').expandableAccordion();
+  });
+  </script>  
+</body>
+</html>
