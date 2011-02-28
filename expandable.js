@@ -1,50 +1,15 @@
+/*!
+*	 heavilly cut down version of jquery ui accordion 
+*	 only use for expand all functionality 
+*	 author: Nick Evans (based on jquery ui accordion)
+*/
 (function( $ ){
-	// heavilly cut down version of jquery ui accordion 
-	// only use for expand all functionality 
-	// author: Nick Evans (based based on jquery ui accordion)
-	var methods = {
-    init : function( options ) { 
-	    return this.each(function(){
-	    	// add the expand all markup in js so non-js users, who will never be able to use it
-	    	// never see it, they'll never miss it after all.
-	    	$(this).before("<div class='ui-expand-collapse-toggle-before clearfix'><a href='#' class='ui-expand-all'>Expand all</a> <a href='#' class='ui-collapse-all'>Collapse all</a></div>");
-	    	$(this).after("<div class='ui-expand-collapse-toggle-after clearfix'><a href='#' class='ui-expand-all'>Expand all</a> <a href='#' class='ui-collapse-all'>Collapse all</a></div>");
-	    	$(this).prev('.ui-expand-collapse-toggle-before').find('.ui-expand-all').click(function(event){
-	    		$(this)
-	    		.parent()
-	    		.next('.ui-expandable-accordion')
-	    		.find(".ui-accordion-header")
-	    		.each(function(){
-	    			if(!$(this).hasClass('ui-state-active')){$(this).trigger('click');}
-	    		});
-	    		event.preventDefault();
-	    	});
-	    	$(this).next('.ui-expand-collapse-toggle-after').find('.ui-expand-all').click(function(event){
-	    		$(this)
-	    		.parent()
-	    		.prev('.ui-expandable-accordion')
-	    		.find(".ui-accordion-header")
-	    		.each(function(){
-	    			if(!$(this).hasClass('ui-state-active')){$(this).trigger('click');}
-	    		});
-	    		event.preventDefault();
-	    	});
-	    	$(this).prev('.ui-expand-collapse-toggle-before').find('.ui-collapse-all').click(function(event){
-	    		$(this)
-	    		.parent()
-	    		.next('.ui-expandable-accordion')
-	    		.find(".ui-accordion-header.ui-state-active")
-	    		.trigger('click');
-	    		event.preventDefault();
-	    	});
-	    	$(this).next('.ui-expand-collapse-toggle-after').find('.ui-collapse-all').click(function(event){
-	    		$(this)
-	    		.parent()
-	    		.prev('.ui-expandable-accordion')
-	    		.find(".ui-accordion-header.ui-state-active")
-	    		.trigger('click');
-	    		event.preventDefault();
-	    	});
+
+	$.fn.expandableAccordion = function( options ) {
+		var opts = $.extend({}, $.fn.expandableAccordion.defaults, options);
+		var numberOfAccordions = this.length;
+	    return this.each(function(i){
+
 			$(this).addClass( "ui-expandable-accordion ui-widget ui-helper-reset" )
 				// in lack of child-selectors in CSS
 				// we need to mark top-LIs in a UL-accordion for some IE-fix
@@ -87,23 +52,46 @@
 				.toggleClass(iconHeaderSelected);
 			$(this).addClass( "ui-accordion-icons" );
 
-			});
-
+	    	// add the expand all markup in js so non-js users, who will never be able to use it
+	    	// never see it, they'll never miss it after all. 
 			
+			// to do: add class to "disable" collapse all button when all elements are collapsed
+			
+	    	if(!opts.multiple || i ==0 ){// add expand all button either to the every one, or to the first one
+		    	$(this).before("<div class='ui-expand-collapse-toggle-before clearfix'><a href='#' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a> <a href='#' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");
+	    	}
+	    	if(!opts.multiple || i == numberOfAccordions - 1 ){// add expand all button either to  every one, or to the last one
+		    	$(this).after("<div class='ui-expand-collapse-toggle-after clearfix'><a href='#' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a><a href='#' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");	  	
+			}
 
-     },
-    show : function( ) { },
-    hide : function( ) { },
-    update : function( content ) { }
-  };
-
-	$.fn.expandableAccordion = function( method ) {
-		if ( methods[method] ) {
-		  return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
-		} else if ( typeof method === 'object' || ! method ) {
-		  return methods.init.apply( this, arguments );
-		} else {
-		  $.error( 'Method ' +  method + ' does not exist on jQuery.expandableAccordion' );
-		} 
+			$thisAccordion = $(this);
+	    	$(this).prev('.ui-expand-collapse-toggle-before').find('.ui-expand-all').click(function(event){
+				$expandAllElement = !opts.multiple 		? 	$thisAccordion.find(".ui-accordion-header:not(.ui-state-active)") : 
+															$(".ui-expandable-accordion .ui-accordion-header:not(.ui-state-active)");
+	    		$expandAllElement.click();
+	    		event.preventDefault();
+	    	});
+	    	$(this).next('.ui-expand-collapse-toggle-after').find('.ui-expand-all').click(function(event){
+				$expandAllElement = !opts.multiple 		? 	$thisAccordion.find(".ui-accordion-header:not(.ui-state-active)") : 
+															$(".ui-expandable-accordion .ui-accordion-header:not(.ui-state-active)");
+	    		$expandAllElement.click();
+	    		event.preventDefault();
+	    	});
+	    	$(this).prev('.ui-expand-collapse-toggle-before').find('.ui-collapse-all').click(function(event){
+				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-accordion-header.ui-state-active") : 
+															$(".ui-expandable-accordion .ui-accordion-header.ui-state-active");
+	    		$collapseAllElement.click();
+	    		event.preventDefault();
+	    	});
+	    	$(this).next('.ui-expand-collapse-toggle-after').find('.ui-collapse-all').click(function(event){
+				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-accordion-header.ui-state-active") : 
+															$(".ui-expandable-accordion .ui-accordion-header.ui-state-active");
+	    		$collapseAllElement.click();
+	    		event.preventDefault();
+	    	});
+		});
 	}
+	$.fn.expandableAccordion.defaults = {
+		multiple: false
+	};
 })(jQuery);
