@@ -78,14 +78,14 @@
 	    		event.preventDefault();
 	    	});
 	    	$(this).prev('.ui-expand-collapse-toggle-before').find('.ui-collapse-all').click(function(event){
-				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-accordion-header.ui-state-active") : 
-															$(".ui-expandable-accordion .ui-accordion-header.ui-state-active");
+				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-state-active") : 
+															$(".ui-expandable-accordion .ui-state-active");
 	    		$collapseAllElement.click();
 	    		event.preventDefault();
 	    	});
 	    	$(this).next('.ui-expand-collapse-toggle-after').find('.ui-collapse-all').click(function(event){
-				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-accordion-header.ui-state-active") : 
-															$(".ui-expandable-accordion .ui-accordion-header.ui-state-active");
+				$collapseAllElement = !opts.multiple 	? 	$thisAccordion.find(".ui-state-active") : 
+															$(".ui-expandable-accordion .ui-state-active");
 	    		$collapseAllElement.click();
 	    		event.preventDefault();
 	    	});
