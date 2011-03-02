@@ -9,7 +9,12 @@
 		var opts = $.extend({}, $.fn.expandableAccordion.defaults, options);
 		var numberOfAccordions = this.length;
 	    return this.each(function(i){
-
+			if($(this).attr('id')){
+				var myID = $(this).attr('id');
+			}else{
+				$(this).attr('id', "ui-expandable-accordion-" + i);
+				var myID =  "ui-expandable-accordion-" + i;
+			}
 			$(this).addClass( "ui-expandable-accordion ui-widget ui-helper-reset" )
 				// in lack of child-selectors in CSS
 				// we need to mark top-LIs in a UL-accordion for some IE-fix
@@ -58,27 +63,19 @@
 	    	
 			// to do: add class to "disable" collapse all button when all elements are collapsed
 		    	if(!opts.multiple || i ==0 ){// add expand all button either to every one, or to the first one
-			    	$(this).before("<div class='ui-expand-collapse-toggle-before clearfix'><a href='#' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a> <a href='#' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");
+			    	$(this).before("<div class='ui-expand-collapse-toggle ui-expand-collapse-toggle-before clearfix'><a href='#"+myID+"' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a> <a href='#"+myID+"' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");
 		    	}
 		    	if(!opts.multiple || i == numberOfAccordions - 1 ){// add expand all button either to every one, or to the last one
-			    	$(this).after("<div class='ui-expand-collapse-toggle-after clearfix'><a href='#' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a><a href='#' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");	  	
+			    	$(this).after("<div class='ui-expand-collapse-toggle ui-expand-collapse-toggle-after clearfix'><a href='#"+myID+"' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a><a href='#"+myID+"' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");	  	
 				}
-				$thisAccordion = $(this);
-		    	$(this).prev('.ui-expand-collapse-toggle-before').find('a').click(function(event){
-		    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active"
-					$toggleElement = !opts.multiple ? $thisAccordion.find(selector) : 
-													  $(".ui-expandable-accordion " + selector);
-		    		$toggleElement.click();
-		    		event.preventDefault();
-		    	});
-		    	$(this).next('.ui-expand-collapse-toggle-after').find('a').click(function(event){
-		    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active"
-					$toggleElement = !opts.multiple ? $thisAccordion.find(selector) : 
-													  $(".ui-expandable-accordion " + selector);
-		    		$toggleElement.click();
-		    		event.preventDefault();
-		    	});
 	    	}
+	    	$('.ui-expand-collapse-toggle').find('a').click(function(event){
+	    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active";
+				$toggleElement = !opts.multiple ? ($($(this).attr("href"))).find(selector) : 
+												  $(".ui-expandable-accordion " + selector);
+	    		$toggleElement.click();
+	    		event.preventDefault();
+	    	});
 		});
 	}
 	$.fn.expandableAccordion.defaults = {
