@@ -12,8 +12,8 @@
 			if($(this).attr('id')){
 				var myID = $(this).attr('id');
 			}else{
-				$(this).attr('id', "ui-expandable-accordion-" + i);
 				var myID =  "ui-expandable-accordion-" + i;
+				$(this).attr('id', myID);
 			}
 			$(this).addClass( "ui-expandable-accordion ui-widget ui-helper-reset" )
 				// in lack of child-selectors in CSS
