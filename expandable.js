@@ -68,14 +68,15 @@
 		    	if(!opts.multiple || i == numberOfAccordions - 1 ){// add expand all button either to every one, or to the last one
 			    	$(this).after("<div class='ui-expand-collapse-toggle ui-expand-collapse-toggle-after clearfix'><a href='#"+myID+"' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a><a href='#"+myID+"' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");	  	
 				}
+
+		    	$('.ui-expand-collapse-toggle').find('a').click(function(event){
+		    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active";
+					$toggleElement = !opts.multiple ? ($($(this).attr("href"))).find(selector) : 
+													  $(".ui-expandable-accordion " + selector);
+		    		$toggleElement.click();
+		    		event.preventDefault();
+		    	});
 	    	}
-	    	$('.ui-expand-collapse-toggle').find('a').click(function(event){
-	    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active";
-				$toggleElement = !opts.multiple ? ($($(this).attr("href"))).find(selector) : 
-												  $(".ui-expandable-accordion " + selector);
-	    		$toggleElement.click();
-	    		event.preventDefault();
-	    	});
 		});
 	}
 	$.fn.expandableAccordion.defaults = {
