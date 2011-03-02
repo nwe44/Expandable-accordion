@@ -71,9 +71,7 @@
 
 		    	$('.ui-expand-collapse-toggle').find('a').click(function(event){
 		    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active";
-					$toggleElement = !opts.multiple ? ($($(this).attr("href"))).find(selector) : 
-													  $(".ui-expandable-accordion " + selector);
-		    		$toggleElement.click();
+					(!opts.multiple ? ($($(this).attr("href"))).find(selector) : $(".ui-expandable-accordion " + selector)).click();
 		    		event.preventDefault();
 		    	});
 	    	}
