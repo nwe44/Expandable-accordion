@@ -116,7 +116,7 @@
 					var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
 					toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
 					if(opts.Divider){toggler.push('<span class="ui-expand-collapse-toggle-divider">|</span>');}
-					toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+					toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-n"></span></a>');
 					toggler.push('</div>');
 					return toggler.join('');
 		    	}
