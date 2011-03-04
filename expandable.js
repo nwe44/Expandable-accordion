@@ -101,16 +101,16 @@
 			// add the expand all markup in js so non-js users, who will never be able to use it
 	    	// never see it, they'll never miss it after all.
 	    	
-	    	// first, build the buttons
-	    	var toggleButtons = function(options, thisID){
-	    		var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
-				var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
-				toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
-				toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
-				toggler.push('</div>');
-				return toggler.join('');
-	    	}
-			// to do: add class to "disable" collapse all button when all elements are collapsed
+		    	// first, build the buttons
+		    	var toggleButtons = function(options, thisID){
+		    		var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
+					var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
+					toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+					toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+					toggler.push('</div>');
+					return toggler.join('');
+		    	}
+		    	
 		    	if(!opts.multiple || i ==0 ){// add expand all button either to every one, or to the first one
 			    	$(this).before(toggleButtons({}, myID));
 		    	}
