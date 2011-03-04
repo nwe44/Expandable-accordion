@@ -217,4 +217,8 @@ nav ul, nav li { margin: 0; }
 	margin-right: 5px;
 	border-right: 1px solid #cccccc;
 }
+a.ui-expand-collapse-toggle-disabled{
+	color: #ccc;
+	cursor: default;
+}
 /* -- end accordions */
