@@ -61,12 +61,21 @@
 			// add the expand all markup in js so non-js users, who will never be able to use it
 	    	// never see it, they'll never miss it after all.
 	    	
+	    	// first, build the buttons
+	    	var toggleButtons = function(options, thisID){
+	    		var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
+				var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
+				toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+				toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+				toggler.push('</div>');
+				return toggler.join('');
+	    	}
 			// to do: add class to "disable" collapse all button when all elements are collapsed
 		    	if(!opts.multiple || i ==0 ){// add expand all button either to every one, or to the first one
-			    	$(this).before("<div class='ui-expand-collapse-toggle ui-expand-collapse-toggle-before clearfix'><a href='#"+myID+"' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a> <a href='#"+myID+"' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");
+			    	$(this).before(toggleButtons({}, myID));
 		    	}
 		    	if(!opts.multiple || i == numberOfAccordions - 1 ){// add expand all button either to every one, or to the last one
-			    	$(this).after("<div class='ui-expand-collapse-toggle ui-expand-collapse-toggle-after clearfix'><a href='#"+myID+"' class='ui-expand-all'>Expand all <span class='ui-icon ui-icon-triangle-1-s'></span></a><a href='#"+myID+"' class='ui-collapse-all'>Collapse all<span class='ui-icon ui-icon-triangle-1-n'></span></a></div>");	  	
+			    	$(this).after(toggleButtons({ className: 'ui-expand-collapse-toggle-after'}, myID));
 				}
 
 		    	$('.ui-expand-collapse-toggle a').click(function(event){
