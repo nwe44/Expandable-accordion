@@ -37,12 +37,52 @@
 				.bind( "blur.expandableAccordion", function() {
 					$( this ).removeClass( "ui-state-focus" );
 				}).bind("click",function(event){
-					$(this)
+					$( this )
 					.toggleClass( "ui-state-active ui-corner-top" )
 					.toggleClass( "ui-state-default ui-corner-all" )
 					.next().slideToggle()
 					.toggleClass( "ui-accordion-content-active"); // this is where the magic happens
-					$(this)
+					if( opts.toggleControls && opts.hideRedundantToggles){
+						if(!$('#' + myID).find('.ui-accordion-content-active').length){
+							//Nothing's open, so add a class to the collapse toggles
+							$('#' + myID).prev()
+										.find('.ui-collapse-all')
+										.addClass('ui-expand-collapse-toggle-disabled')
+										.end()
+										.find('.ui-expand-all')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+							$('#' + myID).next()
+										.find('.ui-collapse-all')
+										.addClass('ui-expand-collapse-toggle-disabled')
+										.end()
+										.find('.ui-expand-all')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+										
+						}else if(!$('#' + myID).find('.ui-state-default').length){
+							// everything's open, so add a class to the expand toggles
+							$('#' + myID).prev()
+										.find('.ui-expand-all')
+										.addClass('ui-expand-collapse-toggle-disabled')
+										.end()
+										.find('.ui-collapse-all')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+							$('#' + myID).next()
+										.find('.ui-expand-all')
+										.addClass('ui-expand-collapse-toggle-disabled')
+										.end()
+										.find('.ui-collapse-all')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+						}else{
+							// it's a mix, so enable both toggle switches
+							$('#' + myID).prev()
+										.find('a')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+							$('#' + myID).next()
+										.find('a')
+										.removeClass('ui-expand-collapse-toggle-disabled');
+						}
+					}
+					$( this )
 					.children( ".ui-icon" )
 						.toggleClass( iconHeaderSelected )
 						.toggleClass( iconHeader );
@@ -88,6 +128,7 @@
 	}
 	$.fn.expandableAccordion.defaults = {
 		multiple: false,
-		toggleControls : true
+		toggleControls : true,
+		hideRedundantToggles:true
 	};
 })(jQuery);
