@@ -96,7 +96,10 @@
 				.toggleClass(iconHeader)
 				.toggleClass(iconHeaderSelected);
 			$(this).addClass( "ui-accordion-icons" );
-
+			
+			// open the first slide if it's in the settings to do so.
+			if(opts.firstOpen){$(this).find( ".ui-accordion-header").eq(0).click();}
+			
 			if(opts.toggleControls){
 			// add the expand all markup in js so non-js users, who will never be able to use it
 	    	// never see it, they'll never miss it after all.
@@ -106,6 +109,7 @@
 		    		var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
 					var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
 					toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+					if(opts.Divider){toggler.push('<span class="ui-expand-collapse-toggle-divider">|</span>');}
 					toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
 					toggler.push('</div>');
 					return toggler.join('');
@@ -127,7 +131,9 @@
 		});
 	}
 	$.fn.expandableAccordion.defaults = {
+		firstOpen: false,
 		multiple: false,
+		toggleDivider: false,
 		toggleControls : true,
 		hideRedundantToggles:true
 	};
