@@ -1,6 +1,6 @@
 /*!
 *	 jQuery Expandable Accordion
-*	 v0.1
+*	 v0.11
 *	 author: Nick Evans (based on jquery ui accordion)
 *	 See https://github.com/nwe44/Expandable-accordion
 *
@@ -114,9 +114,9 @@
 		    	var toggleButtons = function(options, thisID){
 		    		var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
 					var toggler = ['<div class="' + myClass.className + ' ui-expand-collapse-toggle clearfix">'];
-					toggler.push('<a href=#' + thisID + ' class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
+					toggler.push('<a href="#" target="#' + thisID + '" class="ui-expand-all">Expand All <span class="ui-icon ui-icon-triangle-1-s"></span></a>');
 					if(opts.toggleDivider){toggler.push('<span class="ui-expand-collapse-toggle-divider">|</span>');}
-					toggler.push('<a href=#' + thisID + ' class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-n"></span></a>');
+					toggler.push('<a href="#" target="#' + thisID + '" class="ui-collapse-all ui-expand-collapse-toggle-disabled">Collapse All <span class="ui-icon ui-icon-triangle-1-n"></span></a>');
 					toggler.push('</div>');
 					return toggler.join('');
 		    	}
@@ -130,7 +130,7 @@
 
 		    	$('.ui-expand-collapse-toggle a').click(function(event){
 		    		var selector = $(this).hasClass("ui-expand-all") ? ".ui-accordion-header:not(.ui-state-active)" : ".ui-state-active";
-					(!opts.multiple ? ($($(this).attr("href"))).find(selector) : $(".ui-expandable-accordion " + selector)).click();
+					(!opts.multiple ? $($(this).attr("target")).find(selector) : $(".ui-expandable-accordion " + selector)).click();
 		    		event.preventDefault();
 		    	});
 	    	}
