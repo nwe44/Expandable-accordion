@@ -14,6 +14,7 @@
 	$.fn.expandableAccordion = function( options ) {
 		var opts = $.extend({}, $.fn.expandableAccordion.defaults, options);
 		var numberOfAccordions = this.length;
+		var state=[];
 	    return this.each(function(i){
 			if($(this).attr('id')){
 				var myID = $(this).attr('id');
@@ -48,6 +49,11 @@
 					.toggleClass( "ui-state-default ui-corner-all" )
 					.next().slideToggle()
 					.toggleClass( "ui-accordion-content-active"); // this is where the magic happens
+					
+					if(opts.useBBQ && $.bbq && $(this).attr("id") && $(this).hasClass("ui-state-active")) {
+						state[$(this).parent().attr("id")]=$(this).attr("id");
+						$.bbq.pushState(state);
+					}
 					if( opts.toggleControls && opts.hideRedundantToggles){
 						if(!$('#' + myID).find('.ui-accordion-content-active').length){
 							//Nothing's open, so add a class to the collapse toggles
@@ -103,8 +109,12 @@
 				.toggleClass(iconHeaderSelected);
 			$(this).addClass( "ui-accordion-icons" );
 			
+
+			//open saved state 			
+			if(opts.useBBQ && $.bbq && $.bbq.getState($(this).attr("id")))
+				$(this).find( "#"+$.bbq.getState($(this).attr("id"))).not(".ui-state-active").click();
 			// open the first slide if it's in the settings to do so.
-			if(opts.firstOpen){$(this).find( ".ui-accordion-header").eq(0).click();}
+			else if(opts.firstOpen){$(this).find( ".ui-accordion-header").eq(0).click();}
 			
 			if(opts.toggleControls){
 			// add the expand all markup in js so non-js users, who will never be able to use it
@@ -141,6 +151,7 @@
 		multiple: false,
 		toggleDivider: false,
 		toggleControls : true,
-		hideRedundantToggles:true
+		hideRedundantToggles:true,
+		useBBQ:false
 	};
 })(jQuery);
