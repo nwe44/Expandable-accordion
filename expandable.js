@@ -15,11 +15,12 @@
 		var opts = $.extend({}, $.fn.expandableAccordion.defaults, options);
 		var numberOfAccordions = this.length;
 		var state=[];
+		for(var k=0; $("#ui-expandable-accordion-"+k).length; k++);
 	    return this.each(function(i){
 			if($(this).attr('id')){
 				var myID = $(this).attr('id');
 			}else{
-				var myID =  "ui-expandable-accordion-" + i;
+				var myID =  "ui-expandable-accordion-" + (i+k);
 				$(this).attr('id', myID);
 			}
 			$(this).addClass( "ui-expandable-accordion ui-widget ui-helper-reset" )
