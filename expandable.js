@@ -7,7 +7,7 @@
 * 	 This is a heavilly cut down version of jquery ui accordion 
 *	 to be used when more than one accordion needs to be open
 *	 inspired by the advice at http://jqueryui.com/demos/accordion/
-*	 
+*	 Pull Request Test.
 */
 (function( $ ){
 
