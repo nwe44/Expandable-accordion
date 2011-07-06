@@ -151,7 +151,7 @@
     };
     $.fn.expandableAccordion.defaults = {
         firstOpen: false, // will the first item in the nav be open
-        multiple: false, //  should there be one set of toggle controls for all accordions on the page
+        multiple: false, //  should there be one set of toggle controls for each accordion on the page
         toggleDivider: false, // should I try to render a divider between the toggle controls?
         toggleControls : true, // controls to expand/collapse all elements of one or several accordions
         hideRedundantToggles:true, // Hide the collapse button when all elements are collapsed and visa versa
