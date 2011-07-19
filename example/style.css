@@ -150,6 +150,7 @@ nav ul, nav li { margin: 0; }
 	height:auto;
 	border-bottom: 1px solid #eeeeee;
 	border-top: 1px solid #eeeeee;
+	position: relative;
 }
 .ui-expandable-accordion .ui-accordion-header{
 	padding-left: 10px;
@@ -164,7 +165,6 @@ nav ul, nav li { margin: 0; }
 	border-bottom: none;
 	z-index: 10;
 	padding-left: 10px;
-	margin-bottom: -9px;
 }
 
 .ui-expandable-accordion .ui-accordion-content{
@@ -172,7 +172,7 @@ nav ul, nav li { margin: 0; }
 	display: none;
 	margin-bottom: 4px;
 	overflow: auto;
-	padding: 18px 10px;
+	padding: 0 10px;
 	position: relative;
 	top: 0;
 	zoom: 1;
@@ -180,7 +180,6 @@ nav ul, nav li { margin: 0; }
 .ui-expandable-accordion .ui-accordion-content-active{
 	display: block;
 	padding-left: 10px;
-	margin-left: -3px;
 	margin-bottom: 8px;
 }
 .ie7 .ui-expandable-accordion .ui-accordion-content-active,
@@ -193,6 +192,38 @@ nav ul, nav li { margin: 0; }
 	margin-top: -10px;
 	position: absolute;
 	top: 50%;
+}
+.ui-expand-collapse-toggle-before,
+.ui-expand-collapse-toggle-after{
+	display: block;
+	text-align: right;
+	font-size: 85%;
+	margin-left: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+}
+.ui-collapse-all{
+	margin-left: -5px;
+	padding-right:20px;
+	position:relative;
+	text-align: right;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	opacity: 1;
+	z-index: 3;
+}
+.ui-expand-all {
+	position:relative;
+	padding-right:16px;
+	margin-right: 10px;
+	border-right: 1px solid #ADAFB2;	
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	opacity: 1;	
 }
 .ui-icon-triangle-1-s{
 	background-position: -32px 0px !important;	
@@ -217,8 +248,21 @@ nav ul, nav li { margin: 0; }
 	margin-right: 5px;
 	border-right: 1px solid #cccccc;
 }
-a.ui-expand-collapse-toggle-disabled{
-	color: #ccc;
-	cursor: default;
+.ui-expand-collapse-toggles-single .ui-expand-all{
+	border: 0;
+	z-index: 2;
+}
+.ui-expand-collapse-toggle-disabled{
+	margin-right: -80px;
+	opacity: 0;
+	z-index: 1;
+}
+
+.ui-expand-collapse-toggle-disabled.ui-expand-all{
+	margin-right: 20px;
+}
+.ie7 .ui-expand-collapse-toggle-disabled,
+.ie8 .ui-expand-collapse-toggle-disabled{
+	display: none;
 }
 /* -- end accordions */
