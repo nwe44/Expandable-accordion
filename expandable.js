@@ -4,10 +4,10 @@
 *     author: Nick Evans (based on jquery ui accordion)
 *     See https://github.com/nwe44/Expandable-accordion
 *
-*      This is a heavilly cut down version of jquery ui accordion 
+*      This is a heavilly cut down version of jquery ui accordion
 *     to be used when more than one accordion needs to be open
 *     inspired by the advice at http://jqueryui.com/demos/accordion/
-*     
+*
 */
 (function ($) {
 
@@ -50,7 +50,7 @@
                     .toggleClass("ui-state-default ui-corner-all")
                     .next().slideToggle()
                     .toggleClass("ui-accordion-content-active"); // this is where the magic happens
-                    
+
                     if (opts.useBBQ && $.bbq && $(this).attr("id") && $(this).hasClass("ui-state-active")) {
                         state[$(this).parent().attr("id")]=$(this).attr("id");
                         $.bbq.pushState(state);
@@ -70,7 +70,7 @@
                                         .end()
                                         .find('.ui-expand-all')
                                         .removeClass('ui-expand-collapse-toggle-disabled');
-                                        
+
                         }else if (!$('#' + myID).find('.ui-state-default').length) {
                             // everything's open, so add a class to the expand toggles
                             $('#' + myID).prev()
@@ -109,20 +109,20 @@
                 .toggleClass(iconHeader)
                 .toggleClass(iconHeaderSelected);
             $(this).addClass( "ui-accordion-icons" );
-            
 
-            //open saved state             
+
+            //open saved state
             if (opts.useBBQ && $.bbq && $.bbq.getState($(this).attr("id"))) {
                 $(this).find( "#" + $.bbq.getState($(this).attr("id"))).not(".ui-state-active").click();
             }
-            
+
             // open the first slide if it's in the settings to do so.
             else if (opts.firstOpen) {$(this).find( ".ui-accordion-header").eq(0).click();}
-            
+
             if (opts.toggleControls) {
             // add the expand all markup in js so non-js users, who will never be able to use it
             // never see it, they'll never miss it after all.
-            
+
                 // first, build the buttons
                 var toggleButtons = function (options, thisID) {
                     var myClass = $.extend({ className: 'ui-expand-collapse-toggle-before'}, options);
@@ -133,7 +133,7 @@
                     toggler.push('</div>');
                     return toggler.join('');
                 };
-                
+
                 if (! opts.multiple || i === 0) {// add expand all button either to every one, or to the first one
                     $(this).before(toggleButtons({}, myID));
                 }
